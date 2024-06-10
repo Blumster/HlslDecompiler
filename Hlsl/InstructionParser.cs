@@ -310,6 +310,8 @@ namespace HlslDecompiler.Hlsl
                 case Opcode.Sge:
                 case Opcode.Slt:
                 case Opcode.TexKill:
+                case Opcode.Log:
+                case Opcode.Exp:
                     {
                         HlslTreeNode[] inputs = GetInputs(instruction, componentIndex);
                         switch (instruction.Opcode)
@@ -356,6 +358,10 @@ namespace HlslDecompiler.Hlsl
                                 return new SignLessOperation(inputs[0], inputs[1]);
                             case Opcode.TexKill:
                                 return new ClipOperation(inputs[0]);
+                            case Opcode.Log:
+                                return new LogOperation(inputs[0]);
+                            case Opcode.Exp:
+                                return new ExpOperation(inputs[0]);
                             default:
                                 throw new NotImplementedException();
                         }
@@ -642,6 +648,8 @@ namespace HlslDecompiler.Hlsl
                 case Opcode.Rsq:
                 case Opcode.SinCos:
                 case Opcode.TexKill:
+                case Opcode.Log:
+                case Opcode.Exp:
                     return 1;
                 case Opcode.Add:
                 case Opcode.Dp3:

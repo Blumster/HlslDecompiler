@@ -136,7 +136,7 @@ namespace HlslDecompiler.DirectXShaderModel
             //System.Diagnostics.Debug.Assert(numElements == 1);
             System.Diagnostics.Debug.Assert(structMemberInfoOffset == 0);
 
-            return new ConstantDeclaration(name, registerSet, registerIndex, registerCount, cl, type, rows, columns);
+            return new ConstantDeclaration(name, registerSet, registerIndex, registerCount, cl, type, rows, columns, numElements);
         }
 
         private D3D9Instruction ReadInstruction()

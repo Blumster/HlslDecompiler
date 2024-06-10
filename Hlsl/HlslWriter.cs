@@ -137,7 +137,16 @@ namespace HlslDecompiler
                 foreach (ConstantDeclaration declaration in _registers.ConstantDeclarations)
                 {
                     string typeName = GetConstantTypeName(declaration);
-                    WriteLine("{0} {1};", typeName, declaration.Name);
+                    var regSet = declaration.RegisterSet switch
+                    {
+                        RegisterSet.Bool => "b",
+                        RegisterSet.Float4 => "c",
+                        RegisterSet.Int4 => "i",
+                        RegisterSet.Sampler => "s",
+                        _ => throw new InvalidOperationException(),
+                    };
+                    var elementsStr = declaration.Elements > 1 ? $"[{declaration.Elements}]" : string.Empty;
+                    WriteLine($"{typeName} {declaration.Name}{elementsStr} : register({regSet}{declaration.RegisterIndex});");
                 }
 
                 WriteLine();

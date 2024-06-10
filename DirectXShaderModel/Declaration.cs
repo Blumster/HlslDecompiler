@@ -11,10 +11,11 @@ namespace HlslDecompiler.DirectXShaderModel
         public ParameterClass ParameterClass { get; private set; }
         public ParameterType ParameterType { get; private set; }
         public int Rows { get; private set; }
-        public int Columns { get; set; }
+        public int Columns { get; private set; }
+        public int Elements { get; private set; }
 
         public ConstantDeclaration(string name, RegisterSet registerSet, short registerIndex, short registerCount,
-            ParameterClass parameterClass, ParameterType parameterType, int rows, int columns)
+            ParameterClass parameterClass, ParameterType parameterType, int rows, int columns, int elements)
         {
             Name = name;
             RegisterSet = registerSet;
@@ -24,6 +25,7 @@ namespace HlslDecompiler.DirectXShaderModel
             ParameterType = parameterType;
             Rows = rows;
             Columns = columns;
+            Elements = elements;
         }
 
         public bool ContainsIndex(int index)

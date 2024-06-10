@@ -242,6 +242,16 @@ namespace HlslDecompiler.Hlsl
                         var value1 = Compile(components.Select(g => g.Inputs[0]));
                         return $"length({value1})";
                     }
+                case LogOperation _:
+                    {
+                        var value1 = Compile(components.Select(g => g.Inputs[0]));
+                        return $"log2({value1})";
+                    }
+                case ExpOperation _:
+                    {
+                        var value1 = Compile(components.Select(g => g.Inputs[0]));
+                        return $"exp2({value1})";
+                    }
                 default:
                     throw new NotImplementedException();
             }
